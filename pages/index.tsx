@@ -1,8 +1,6 @@
 import useSWR from 'swr'
-import { Button } from '../components/button'
-// import { Button } from '@/components/button'
-import styles from '../styles/Home.module.css'
-// import styles from 'styles/Home.module.css'
+import { Button } from '@/components/button'
+import styles from 'styles/Home.module.css'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
