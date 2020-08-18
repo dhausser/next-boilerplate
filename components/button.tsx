@@ -1,9 +1,9 @@
-import "styles/Home.module.css";
+import 'styles/Home.module.css'
 
 function handleClick() {
-  console.log("Click");
+  window.alert('With typescript and Jest')
 }
 
 export function Button() {
-  return <button onClick={handleClick}>Click me</button>;
+  return <button onClick={handleClick}>Test Button</button>
 }
