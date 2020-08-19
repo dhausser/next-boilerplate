@@ -16,8 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"]
-    }
+    },
+    "typeRoots": ["node_modules/@types", "types"],
+    "rootDir": ".",
+    "plugins": [{ "name": "nexus/typescript-language-service" }]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "."],
   "exclude": ["node_modules"]
 }

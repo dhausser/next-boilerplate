@@ -19,7 +19,7 @@ function HomePage({ posts }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        Welcome {data.name}
+        Welcome {data.user.name}
         <Button />
         <ul>
           {posts.map((post) => (
