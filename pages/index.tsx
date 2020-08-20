@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+// import useSWR from 'swr'
 import { Post, PrismaClient } from '@prisma/client'
 import { GetStaticProps } from 'next'
 import { Button } from '@/components/button'
@@ -8,18 +8,18 @@ interface Props {
   posts: Post[]
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+// const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 function HomePage({ posts }: Props) {
-  const { data, error } = useSWR('/api/user', fetcher)
+  // const { data, error } = useSWR('/api/user', fetcher)
 
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  // if (error) return <div>Failed to load</div>
+  // if (!data) return <div>Loading...</div>
 
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        Welcome {data.user.name}
+        Welcome!
         <Button />
         <ul>
           {posts.map((post) => (
