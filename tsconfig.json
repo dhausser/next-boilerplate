@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -17,9 +17,13 @@
     "paths": {
       "@/components/*": ["components/*"]
     },
-    "typeRoots": ["node_modules/@types", "types"],
     "rootDir": ".",
-    "plugins": [{ "name": "nexus/typescript-language-service" }]
+    "plugins": [
+      {
+        "name": "nexus/typescript-language-service"
+      }
+    ],
+    "typeRoots": ["node_modules/@types", "types"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "."],
   "exclude": ["node_modules"]
