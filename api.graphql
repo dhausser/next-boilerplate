@@ -14,11 +14,30 @@ The `JSON` scalar type represents JSON objects as specified by [ECMA-404](http:/
 """
 scalar Json
 
+type Post {
+  author: User!
+  authorId: String
+  content: String
+  id: ID
+  published: Boolean
+  title: String
+}
+
+type Profile {
+  bio: String
+  id: ID
+  user: User
+  userId: String
+}
+
 type Query {
-  users(world: String): [User!]
+  posts: [Post!]!
 }
 
 type User {
+  email: String
   id: ID
   name: String
+  posts: [Post!]
+  profile: Profile
 }
