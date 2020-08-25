@@ -1,4 +1,5 @@
-import { ApolloProvider, ApolloClient, NormalizedCacheObject, InMemoryCache } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
+import { useApollo } from '../apollo/client'
 import 'styles/globals.css'
 
 // import App from "next/app";
@@ -7,13 +8,10 @@ import type { AppProps /*, AppContext */ } from 'next/app'
 // TODO: Configure ApolloClient for Next.js
 
 function App({ Component, pageProps }: AppProps) {
-  const cache = new InMemoryCache()
-  const client = new ApolloClient<NormalizedCacheObject>({
-    cache,
-  })
+  const apolloClient = useApollo(pageProps.initialApolloState)
 
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
     </ApolloProvider>
   )
