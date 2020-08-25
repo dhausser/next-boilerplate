@@ -14,7 +14,7 @@
   "dependencies": {
     "next": "^9.5.2",
     "nexus": "0.26.1",
-    "nexus-plugin-prisma": "0.16.1",
+    "nexus-plugin-prisma": "0.17.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "swr": "^0.3.0"
