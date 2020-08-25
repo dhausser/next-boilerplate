@@ -1,4 +1,4 @@
-// import useSWR from 'swr'
+import { useQuery, gql } from '@apollo/client'
 import { Post, PrismaClient } from '@prisma/client'
 import { GetStaticProps } from 'next'
 import { Button } from '@/components/button'
@@ -8,21 +8,47 @@ interface Props {
   posts: Post[]
 }
 
-// const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const POSTS_QUERY = gql`
+  query Posts {
+    posts(after: { id: 803 }, first: 2) {
+      id
+      title
+      content
+      author {
+        id
+        email
+        name
+        profile {
+          id
+          bio
+        }
+      }
+      published
+      createdAt
+    }
+  }
+`
 
 function HomePage({ posts }: Props) {
-  // const { data, error } = useSWR('/api/user', fetcher)
+  const { loading, error, data } = useQuery<{ posts: Post[] }>(POSTS_QUERY)
 
-  // if (error) return <div>Failed to load</div>
-  // if (!data) return <div>Loading...</div>
+  if (loading || !data) return <p>Loading...</p>
+  if (error) return <p>{error.message}</p>
 
   return (
     <div className={styles.container}>
       <div className={styles.main}>
         Welcome!
         <Button />
+        Static Props:
         <ul>
           {posts.map((post) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+        Dynamic data:
+        <ul>
+          {data.posts.map((post) => (
             <li key={post.id}>{post.title}</li>
           ))}
         </ul>

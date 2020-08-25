@@ -53,6 +53,8 @@ type User {
   email: String!
   id: Int!
   name: String
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int): [Post!]!
+  profile: Profile
 }
 
 input UserWhereUniqueInput {

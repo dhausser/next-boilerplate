@@ -1,10 +1,22 @@
+import { ApolloProvider, ApolloClient, NormalizedCacheObject, InMemoryCache } from '@apollo/client'
 import 'styles/globals.css'
 
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app'
 
+// TODO: Configure ApolloClient for Next.js
+
 function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const cache = new InMemoryCache()
+  const client = new ApolloClient<NormalizedCacheObject>({
+    cache,
+  })
+
+  return (
+    <ApolloProvider client={client}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  )
 }
 
 // Only uncomment this method if you have blocking data requirements for
