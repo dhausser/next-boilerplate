@@ -1,6 +1,7 @@
 import { useQuery, gql } from '@apollo/client'
 import { Post, PrismaClient } from '@prisma/client'
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 import { Button } from '@/components/button'
 import styles from 'styles/Home.module.css'
 
@@ -43,13 +44,21 @@ function HomePage({ posts }: Props) {
         Static Props:
         <ul>
           {posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
+            <li key={post.id}>
+              <Link href="/post/[pid]" as={`/post/${post.id}`}>
+                {post.title}
+              </Link>
+            </li>
           ))}
         </ul>
         Dynamic data:
         <ul>
           {data.posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
+            <li key={post.id}>
+              <Link href="/post/[pid]" as={`/post/${post.id}`}>
+                {post.title}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
