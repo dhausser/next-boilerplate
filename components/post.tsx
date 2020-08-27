@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client'
+import * as PostTypes from './__generated__/Post'
 
 interface Props {
   id: number
@@ -21,7 +22,7 @@ const POST_QUERY = gql`
 `
 
 function Post(props: Props) {
-  const { loading, error, data } = useQuery(POST_QUERY, {
+  const { loading, error, data } = useQuery<PostTypes.Post, PostTypes.PostVariables>(POST_QUERY, {
     variables: { input: { id: props.id } },
   })
 
@@ -30,12 +31,12 @@ function Post(props: Props) {
 
   return (
     <>
-      <p>ID: {data.post.id}</p>
-      <p>Title: {data.post.title}</p>
-      <p>Content: {data.post.content}</p>
-      <p>Author: {data.post.author.name}</p>
-      <p>{`Published: ${data.post.published}`}</p>
-      <p>Created at: {data.post.createdAt}</p>
+      <p>ID: {data.post?.id}</p>
+      <p>Title: {data.post?.title}</p>
+      <p>Content: {data.post?.content}</p>
+      <p>Author: {data.post?.author.name}</p>
+      <p>{`Published: ${data.post?.published}`}</p>
+      <p>Created at: {data.post?.createdAt}</p>
     </>
   )
 }

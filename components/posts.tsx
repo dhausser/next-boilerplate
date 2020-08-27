@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client'
-import { Post } from '@prisma/client'
 import Link from 'next/link'
+import * as PostsTypes from './__generated__/Posts'
 
 const POSTS_QUERY = gql`
   query Posts {
@@ -24,7 +24,7 @@ const POSTS_QUERY = gql`
 `
 
 function Posts() {
-  const { loading, error, data } = useQuery<{ posts: Post[] }>(POSTS_QUERY)
+  const { loading, error, data } = useQuery<PostsTypes.Posts>(POSTS_QUERY)
 
   if (loading || !data) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
