@@ -1,10 +1,22 @@
 import { useRouter } from 'next/router'
+import styles from 'styles/Home.module.css'
+import { Post } from '@/components/post'
 
-const Post = () => {
+const PostPage = () => {
   const router = useRouter()
   const { pid } = router.query
 
-  return <p>Post: {pid}</p>
+  const id = typeof pid === 'string' ? parseInt(pid, 10) : null
+
+  if (!id) {
+    return <p>Post ID: {pid}</p>
+  }
+
+  return (
+    <div className={styles.container}>
+      <Post id={id}></Post>
+    </div>
+  )
 }
 
-export default Post
+export default PostPage
