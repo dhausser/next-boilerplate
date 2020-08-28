@@ -1,10 +1,11 @@
 import { useQuery, gql } from '@apollo/client'
 import Link from 'next/link'
 import * as PostsTypes from './__generated__/Posts'
+import styles from 'styles/Home.module.css'
 
 const POSTS_QUERY = gql`
   query Posts {
-    posts(after: { id: 803 }, first: 2) {
+    posts(after: { id: 802 }, first: 5) {
       id
       title
       content
@@ -30,15 +31,15 @@ function Posts() {
   if (error) return <p>{error.message}</p>
 
   return (
-    <ul>
+    <div className={styles.grid}>
       {data.posts.map((post) => (
-        <li key={post.id}>
+        <div className={styles.card} key={post.id}>
           <Link href="/post/[pid]" as={`/post/${post.id}`}>
             <a>{post.title}</a>
           </Link>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   )
 }
 

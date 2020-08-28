@@ -16,15 +16,15 @@ function HomePage({ posts }: Props) {
         Welcome!
         <Button />
         Static Props:
-        <ul>
+        <div className={styles.grid}>
           {posts.map((post) => (
-            <li key={post.id}>
+            <div className={styles.card} key={post.id}>
               <Link href="/post/[pid]" as={`/post/${post.id}`}>
                 <a>{post.title}</a>
               </Link>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
         Dynamic data:
         <Posts />
       </div>
