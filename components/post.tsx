@@ -5,7 +5,7 @@ interface Props {
   id: number
 }
 
-const POST_QUERY = gql`
+export const POST_QUERY = gql`
   query Post($input: PostWhereUniqueInput!) {
     post(where: $input) {
       id

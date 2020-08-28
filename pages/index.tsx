@@ -1,5 +1,10 @@
 import { Post, PrismaClient } from '@prisma/client'
 import { GetStaticProps } from 'next'
+// import { GetServerSideProps } from 'next'
+// import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+// import { initializeApollo } from '../apollo/client'
+// import { POSTS_QUERY } from '@/components/posts'
+
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import { Posts } from '@/components/posts'
@@ -33,7 +38,12 @@ function HomePage({ posts }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  // const apolloClient: ApolloClient<NormalizedCacheObject | null> = initializeApollo()
   const prisma = new PrismaClient()
+
+  // await apolloClient.query({
+  //   query: POSTS_QUERY,
+  // })
 
   const posts = await prisma.post.findMany({
     select: { id: true, title: true, content: true },
@@ -41,9 +51,25 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
+      // initialApolloState: apolloClient.cache.extract(),
       posts,
     },
   }
 }
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const apolloClient: ApolloClient<NormalizedCacheObject | null> = initializeApollo()
+
+//   await apolloClient.query({
+//     query: POSTS_QUERY,
+//   })
+
+//   // Pass post data to the page via props
+//   return {
+//     props: {
+//       initialApolloState: apolloClient.cache.extract(),
+//     },
+//   }
+// }
 
 export default HomePage

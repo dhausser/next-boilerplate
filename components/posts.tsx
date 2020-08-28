@@ -3,7 +3,7 @@ import Link from 'next/link'
 import * as PostsTypes from './__generated__/Posts'
 import styles from 'styles/Home.module.css'
 
-const POSTS_QUERY = gql`
+export const POSTS_QUERY = gql`
   query Posts {
     posts(after: { id: 802 }, first: 5) {
       id
