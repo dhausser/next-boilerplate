@@ -1,6 +1,6 @@
 import { schema } from 'nexus'
 
-schema.objectType({
+export const Profile = schema.objectType({
   name: 'Profile',
   definition(t) {
     t.model.id()

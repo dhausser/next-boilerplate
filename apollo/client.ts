@@ -3,8 +3,6 @@ import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/clie
 
 let apolloClient: ApolloClient<NormalizedCacheObject | null>
 
-// TODO: Fix SSR with SchemaLink
-
 function createIsomorphLink() {
   if (typeof window === 'undefined') {
     const { SchemaLink } = require('@apollo/client/link/schema')
