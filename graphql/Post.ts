@@ -1,6 +1,6 @@
 import { schema } from 'nexus'
 
-schema.objectType({
+export const Post = schema.objectType({
   name: 'Post',
   definition(t) {
     t.model.id()

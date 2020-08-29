@@ -3,19 +3,21 @@ import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/clie
 
 let apolloClient: ApolloClient<NormalizedCacheObject | null>
 
+// TODO: Fix SSR with SchemaLink
+
 function createIsomorphLink() {
-  // if (typeof window === 'undefined') {
-  // const { SchemaLink } = require('@apollo/client/link/schema')
-  // const { schema } = require('../graphql/schema')
-  // return new SchemaLink({ schema })
-  // } else {
-  const { HttpLink } = require('@apollo/client/link/http')
-  return new HttpLink({
-    uri: '/api/graphql',
-    credentials: 'same-origin',
-  })
+  if (typeof window === 'undefined') {
+    const { SchemaLink } = require('@apollo/client/link/schema')
+    const { schema } = require('../graphql/schema')
+    return new SchemaLink({ schema })
+  } else {
+    const { HttpLink } = require('@apollo/client/link/http')
+    return new HttpLink({
+      uri: '/api/graphql',
+      credentials: 'same-origin',
+    })
+  }
 }
-// }
 
 function createApolloClient() {
   return new ApolloClient({
