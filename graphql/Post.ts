@@ -13,7 +13,7 @@ export const Post = schema.objectType({
   },
 })
 
-schema.extendType({
+export const Query = schema.extendType({
   type: 'Query',
   definition(t) {
     t.crud.post()
