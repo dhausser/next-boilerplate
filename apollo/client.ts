@@ -4,18 +4,18 @@ import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/clie
 let apolloClient: ApolloClient<NormalizedCacheObject | null>
 
 function createIsomorphLink() {
-  if (typeof window === 'undefined') {
-    const { SchemaLink } = require('@apollo/client/link/schema')
-    const { nexusSchema } = require('./schema')
-    return new SchemaLink({ schema: nexusSchema })
-  } else {
-    const { HttpLink } = require('@apollo/client/link/http')
-    return new HttpLink({
-      uri: '/api/graphql',
-      credentials: 'same-origin',
-    })
-  }
+  // if (typeof window === 'undefined') {
+  //   const { SchemaLink } = require('@apollo/client/link/schema')
+  //   const { nexusSchema } = require('./schema')
+  //   return new SchemaLink({ schema: nexusSchema })
+  // } else {
+  const { HttpLink } = require('@apollo/client/link/http')
+  return new HttpLink({
+    uri: '/api/graphql',
+    credentials: 'same-origin',
+  })
 }
+// }
 
 function createApolloClient() {
   return new ApolloClient({

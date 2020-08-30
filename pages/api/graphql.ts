@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV === 'development') require('nexus').default.reset()
 
-const app = require('nexus').default
 const { prisma } = require('nexus-plugin-prisma')
+const app = require('nexus').default
 
 require('../../graphql/User')
 require('../../graphql/Profile')
