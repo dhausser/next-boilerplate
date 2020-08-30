@@ -1,6 +1,6 @@
 import { schema } from 'nexus'
 
-export const Post = schema.objectType({
+schema.objectType({
   name: 'Post',
   definition(t) {
     t.model.id()
@@ -13,7 +13,7 @@ export const Post = schema.objectType({
   },
 })
 
-export const Query = schema.extendType({
+schema.extendType({
   type: 'Query',
   definition(t) {
     t.crud.post()
