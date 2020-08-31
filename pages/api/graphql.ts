@@ -1,13 +1,12 @@
-if (process.env.NODE_ENV === 'development') require('nexus').default.reset()
+import { ApolloServer } from 'apollo-server-micro'
+import { schema } from '../../apollo/schema'
 
-const { prisma } = require('nexus-plugin-prisma')
-const app = require('nexus').default
+const apolloServer = new ApolloServer({ schema })
 
-require('../../graphql/User')
-require('../../graphql/Profile')
-require('../../graphql/Post')
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
 
-app.use(prisma({ features: { crud: true } }))
-app.assemble()
-
-export default app.server.handlers.graphql
+export default apolloServer.createHandler({ path: '/api/graphql' })
