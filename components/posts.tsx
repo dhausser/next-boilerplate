@@ -5,7 +5,7 @@ import styles from 'styles/Home.module.css'
 
 export const POSTS_QUERY = gql`
   query Posts {
-    posts(after: { id: 802 }, first: 5) {
+    posts {
       id
       title
       content

@@ -19,6 +19,7 @@ type Profile {
 }
 
 type Query {
+  post(id: ID): Post!
   posts: [Post!]!
   profile: [Profile!]!
   users: [User!]!
@@ -29,5 +30,5 @@ type User {
   id: ID!
   name: String
   posts: [Post!]!
-  profile: Profile!
+  profile: Profile
 }

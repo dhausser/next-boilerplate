@@ -3,8 +3,6 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PostWhereUniqueInput } from './../../__generated__/globalTypes'
-
 // ====================================================
 // GraphQL query operation: Post
 // ====================================================
@@ -17,18 +15,18 @@ export interface Post_post_author {
 
 export interface Post_post {
   __typename: 'Post'
-  id: number
+  id: string
   title: string
   content: string | null
   author: Post_post_author
   published: boolean
-  createdAt: any
+  createdAt: string
 }
 
 export interface Post {
-  post: Post_post | null
+  post: Post_post
 }
 
 export interface PostVariables {
-  input: PostWhereUniqueInput
+  id: string
 }

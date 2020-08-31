@@ -1,4 +1,4 @@
-import { makeSchema, objectType, queryType } from '@nexus/schema'
+import { idArg, makeSchema, objectType, queryType } from '@nexus/schema'
 import path from 'path'
 
 const Post = objectType({
@@ -42,7 +42,7 @@ const Profile = objectType({
           })
           .user()
         if (!user) {
-          throw new Error('no user found')
+          throw new Error(`No user found for id: ${root.id}`)
         }
         return user
       },
@@ -65,22 +65,20 @@ const User = objectType({
           })
           .posts()
         if (!posts) {
-          throw new Error('no posts found')
+          throw new Error(`No posts found for id: ${root.id}`)
         }
         return posts
       },
     })
     t.field('profile', {
       type: 'Profile',
+      nullable: true,
       async resolve(root, _args, ctx) {
         const profile = await ctx.prisma.user
           .findOne({
             where: { id: root.id },
           })
           .profile()
-        if (!profile) {
-          throw new Error('no profile found')
-        }
         return profile
       },
     })
@@ -89,18 +87,36 @@ const User = objectType({
 
 const Query = queryType({
   definition(t) {
+    t.field('post', {
+      type: 'Post',
+      args: {
+        id: idArg(),
+      },
+      async resolve(_root, args, ctx) {
+        const post = await ctx.prisma.post.findOne({
+          where: { id: Number(args.id) },
+        })
+        if (!post) {
+          throw new Error(`no post found for id: ${args.id}`)
+        }
+        return post
+      },
+    })
+
     t.list.field('posts', {
       type: 'Post',
       resolve(_root, _args, ctx) {
         return ctx.prisma.post.findMany()
       },
     })
+
     t.list.field('profile', {
       type: 'Profile',
       resolve(_root, _args, ctx) {
         return ctx.prisma.profile.findMany()
       },
     })
+
     t.list.field('users', {
       type: 'User',
       resolve(_root, _args, ctx) {

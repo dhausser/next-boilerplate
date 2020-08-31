@@ -7,10 +7,6 @@
 // START Enums and Input Objects
 //==============================================================
 
-export interface PostWhereUniqueInput {
-  id?: number | null
-}
-
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

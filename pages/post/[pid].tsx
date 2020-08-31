@@ -6,7 +6,7 @@ const PostPage = () => {
   const router = useRouter()
   const { pid } = router.query
 
-  const id = typeof pid === 'string' ? parseInt(pid, 10) : null
+  const id = typeof pid === 'string' ? pid : null
 
   if (!id) {
     return <p>Post ID: {pid}</p>

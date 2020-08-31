@@ -9,13 +9,13 @@
 
 export interface Posts_posts_author_profile {
   __typename: 'Profile'
-  id: number
+  id: string
   bio: string | null
 }
 
 export interface Posts_posts_author {
   __typename: 'User'
-  id: number
+  id: string
   email: string
   name: string | null
   profile: Posts_posts_author_profile | null
@@ -23,12 +23,12 @@ export interface Posts_posts_author {
 
 export interface Posts_posts {
   __typename: 'Post'
-  id: number
+  id: string
   title: string
   content: string | null
   author: Posts_posts_author
   published: boolean
-  createdAt: any
+  createdAt: string
 }
 
 export interface Posts {

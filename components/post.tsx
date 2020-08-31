@@ -2,12 +2,12 @@ import { useQuery, gql } from '@apollo/client'
 import * as PostTypes from './__generated__/Post'
 
 interface Props {
-  id: number
+  id: string
 }
 
 export const POST_QUERY = gql`
-  query Post($input: PostWhereUniqueInput!) {
-    post(where: $input) {
+  query Post($id: ID!) {
+    post(id: $id) {
       id
       title
       content
@@ -23,7 +23,7 @@ export const POST_QUERY = gql`
 
 function Post(props: Props) {
   const { loading, error, data } = useQuery<PostTypes.Post, PostTypes.PostVariables>(POST_QUERY, {
-    variables: { input: { id: props.id } },
+    variables: { id: props.id },
   })
 
   if (loading || !data) return <p>Loading...</p>
