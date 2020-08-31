@@ -29,5 +29,5 @@ type User {
   id: ID!
   name: String
   posts: [Post!]!
-  profile: Profile
+  profile: Profile!
 }

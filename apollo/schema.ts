@@ -36,9 +36,11 @@ const Profile = objectType({
     t.field('user', {
       type: 'User',
       async resolve(root, _args, ctx) {
-        const user = await ctx.prisma.profile.findOne({
-          where: { id: root.id },
-        })
+        const user = await ctx.prisma.profile
+          .findOne({
+            where: { id: root.id },
+          })
+          .user()
         if (!user) {
           throw new Error('no user found')
         }
@@ -70,11 +72,12 @@ const User = objectType({
     })
     t.field('profile', {
       type: 'Profile',
-      nullable: true,
       async resolve(root, _args, ctx) {
-        const profile = await ctx.prisma.user.findOne({
-          where: { id: root.id },
-        })
+        const profile = await ctx.prisma.user
+          .findOne({
+            where: { id: root.id },
+          })
+          .profile()
         if (!profile) {
           throw new Error('no profile found')
         }
