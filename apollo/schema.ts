@@ -6,15 +6,24 @@ const Post = objectType({
   definition(t) {
     t.id('id')
     t.string('title')
-    t.string('content')
+    t.string('content', { nullable: true })
     t.boolean('published')
-    // t.model.id()
-    // t.model.title()
-    // t.model.content()
-    // t.model.author()
-    // t.model.authorId()
-    // t.model.published()
-    // t.model.createdAt()
+    t.string('createdAt')
+    t.string('authorId')
+    t.field('author', {
+      type: 'User',
+      async resolve(root, _args, ctx) {
+        const author = await ctx.prisma.post
+          .findOne({
+            where: { id: root.id },
+          })
+          .author()
+        if (!author) {
+          throw new Error('no post found')
+        }
+        return author
+      },
+    })
   },
 })
 
@@ -22,11 +31,20 @@ const Profile = objectType({
   name: 'Profile',
   definition(t) {
     t.id('id')
-    t.string('bio')
-    // t.model.id()
-    // t.model.bio()
-    // t.model.user()
-    // t.model.userId()
+    t.string('bio', { nullable: true })
+    t.string('userId')
+    t.field('user', {
+      type: 'User',
+      async resolve(root, _args, ctx) {
+        const user = await ctx.prisma.profile.findOne({
+          where: { id: root.id },
+        })
+        if (!user) {
+          throw new Error('no user found')
+        }
+        return user
+      },
+    })
   },
 })
 
@@ -35,12 +53,34 @@ const User = objectType({
   definition(t) {
     t.id('id')
     t.string('email')
-    t.string('name')
-    // t.model.id()
-    // t.model.email()
-    // t.model.name()
-    // t.model.posts()
-    // t.model.profile()
+    t.string('name', { nullable: true })
+    t.list.field('posts', {
+      type: 'Post',
+      async resolve(root, _args, ctx) {
+        const posts = await ctx.prisma.user
+          .findOne({
+            where: { id: root.id },
+          })
+          .posts()
+        if (!posts) {
+          throw new Error('no posts found')
+        }
+        return posts
+      },
+    })
+    t.field('profile', {
+      type: 'Profile',
+      nullable: true,
+      async resolve(root, _args, ctx) {
+        const profile = await ctx.prisma.user.findOne({
+          where: { id: root.id },
+        })
+        if (!profile) {
+          throw new Error('no profile found')
+        }
+        return profile
+      },
+    })
   },
 })
 
@@ -48,20 +88,20 @@ const Query = queryType({
   definition(t) {
     t.list.field('posts', {
       type: 'Post',
-      resolve() {
-        return []
+      resolve(_root, _args, ctx) {
+        return ctx.prisma.post.findMany()
       },
     })
     t.list.field('profile', {
       type: 'Profile',
-      resolve() {
-        return []
+      resolve(_root, _args, ctx) {
+        return ctx.prisma.profile.findMany()
       },
     })
     t.list.field('users', {
       type: 'User',
-      resolve() {
-        return []
+      resolve(_root, _args, ctx) {
+        return ctx.prisma.user.findMany()
       },
     })
   },

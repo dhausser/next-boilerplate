@@ -2,15 +2,20 @@
 ### Do not make changes to this file directly
 
 type Post {
-  content: String!
+  author: User!
+  authorId: String!
+  content: String
+  createdAt: String!
   id: ID!
   published: Boolean!
   title: String!
 }
 
 type Profile {
-  bio: String!
+  bio: String
   id: ID!
+  user: User!
+  userId: String!
 }
 
 type Query {
@@ -22,5 +27,7 @@ type Query {
 type User {
   email: String!
   id: ID!
-  name: String!
+  name: String
+  posts: [Post!]!
+  profile: Profile
 }
