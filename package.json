@@ -21,12 +21,10 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
     "@prisma-labs/prettier-config": "^0.1.0",
     "@prisma/cli": "^2.5.1",
     "@testing-library/react": "^10.4.8",
-    "@types/jest": "^26.0.10",
+    "@types/jest": "^26.0.12",
     "@types/node": "^14.6.1",
     "@types/react": "^16.9.48",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
