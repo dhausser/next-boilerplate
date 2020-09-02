@@ -147,6 +147,18 @@ const Mutation = mutationType({
         })
       },
     })
+
+    t.field('deleteDraft', {
+      type: 'Post',
+      args: {
+        id: idArg({ nullable: false }),
+      },
+      resolve(_root, args, ctx) {
+        return ctx.prisma.post.delete({
+          where: { id: args.id },
+        })
+      },
+    })
   },
 })
 
