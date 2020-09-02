@@ -1,4 +1,4 @@
-import { idArg, makeSchema, objectType, queryType } from '@nexus/schema'
+import { idArg, makeSchema, objectType, queryType, mutationType, stringArg } from '@nexus/schema'
 import path from 'path'
 
 const Post = objectType({
@@ -126,8 +126,32 @@ const Query = queryType({
   },
 })
 
+const Mutation = mutationType({
+  definition(t) {
+    t.field('creaftDraft', {
+      type: 'Post',
+      args: {
+        title: stringArg({ nullable: false }),
+        content: stringArg(),
+        authorEmail: stringArg({ nullable: false }),
+      },
+      resolve(_root, args, ctx) {
+        return ctx.prisma.post.create({
+          data: {
+            title: args.title,
+            content: args.content,
+            author: {
+              connect: { email: args.authorEmail },
+            },
+          },
+        })
+      },
+    })
+  },
+})
+
 export const schema = makeSchema({
-  types: [Query, User, Post, Profile],
+  types: [Query, Mutation, User, Post, Profile],
   typegenAutoConfig: {
     contextType: '{ prisma: PrismaClient.PrismaClient }',
     sources: [{ source: '.prisma/client', alias: 'PrismaClient' }],
