@@ -16,7 +16,7 @@
     "@prisma/client": "^2.6.0",
     "apollo-server-micro": "^2.17.0",
     "graphql-tag": "^2.11.0",
-    "next": "^9.5.2",
+    "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -31,7 +31,7 @@
     "@typescript-eslint/parser": "^4.0.1",
     "apollo": "^2.30.2",
     "babel-jest": "^26.3.0",
-    "eslint": "^7.8.0",
+    "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react": "^7.20.6",
     "husky": ">=4",
