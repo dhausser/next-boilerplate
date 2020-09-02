@@ -148,6 +148,30 @@ const Mutation = mutationType({
       },
     })
 
+    t.field('updateDraft', {
+      type: 'Post',
+      args: {
+        id: idArg({ nullable: false }),
+        title: stringArg(),
+        content: stringArg(),
+        authorEmail: stringArg(),
+      },
+      resolve(_root, args, ctx) {
+        return ctx.prisma.post.update({
+          where: { id: args.id },
+          data: {
+            title: args.title,
+            content: args.content,
+            author: {
+              connect: {
+                email: args.authorEmail,
+              },
+            },
+          },
+        })
+      },
+    })
+
     t.field('deleteDraft', {
       type: 'Post',
       args: {
