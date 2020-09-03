@@ -152,13 +152,13 @@ const Mutation = mutationType({
       type: 'Post',
       args: {
         id: idArg({ nullable: false }),
-        title: stringArg(),
+        title: stringArg({ nullable: false }),
         content: stringArg(),
-        authorEmail: stringArg(),
+        authorEmail: stringArg({ nullable: false }),
       },
       resolve(_root, args, ctx) {
         return ctx.prisma.post.update({
-          where: { id: args.id },
+          where: { id: Number(args.id) },
           data: {
             title: args.title,
             content: args.content,
@@ -179,7 +179,7 @@ const Mutation = mutationType({
       },
       resolve(_root, args, ctx) {
         return ctx.prisma.post.delete({
-          where: { id: args.id },
+          where: { id: Number(args.id) },
         })
       },
     })

@@ -3,6 +3,8 @@
 
 type Mutation {
   creaftDraft(authorEmail: String!, content: String, title: String!): Post!
+  deleteDraft(id: ID!): Post!
+  updateDraft(authorEmail: String!, content: String, id: ID!, title: String!): Post!
 }
 
 type Post {
