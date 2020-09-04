@@ -14,7 +14,7 @@
   "dependencies": {
     "@apollo/client": "^3.1.4",
     "@nexus/schema": "^0.15.0",
-    "@prisma/client": "^2.6.1",
+    "@prisma/client": "^2.6.2",
     "apollo-server-micro": "^2.17.0",
     "graphql-tag": "^2.11.0",
     "next": "^9.5.3",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@prisma-labs/prettier-config": "^0.1.0",
-    "@prisma/cli": "^2.6.1",
+    "@prisma/cli": "^2.6.2",
     "@testing-library/react": "^11.0.2",
     "@types/jest": "^26.0.13",
     "@types/node": "^14.6.4",
@@ -32,7 +32,7 @@
     "@typescript-eslint/parser": "^4.0.1",
     "apollo": "^2.30.2",
     "babel-jest": "^26.3.0",
-    "eslint": "7.2.0",
+    "eslint": "7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
