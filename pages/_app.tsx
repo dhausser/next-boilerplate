@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../apollo/client'

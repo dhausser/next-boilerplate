@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable global-require */
 import { useMemo } from 'react'
 import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 
