@@ -9,12 +9,17 @@ const PostPage = () => {
   const id = typeof pid === 'string' ? pid : null
 
   if (!id) {
-    return <p>Post ID: {pid}</p>
+    return (
+      <p>
+        Post ID:
+        {pid}
+      </p>
+    )
   }
 
   return (
     <div className={styles.container}>
-      <Post id={id}></Post>
+      <Post id={id} />
     </div>
   )
 }

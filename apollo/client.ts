@@ -1,3 +1,6 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable global-require */
 import { useMemo } from 'react'
 import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 
@@ -9,13 +12,12 @@ function createIsomorphLink() {
     const { schema } = require('./schema')
     const { createContext } = require('./context')
     return new SchemaLink({ schema, context: createContext() })
-  } else {
-    const { HttpLink } = require('@apollo/client/link/http')
-    return new HttpLink({
-      uri: '/api/graphql',
-      credentials: 'same-origin',
-    })
   }
+  const { HttpLink } = require('@apollo/client/link/http')
+  return new HttpLink({
+    uri: '/api/graphql',
+    credentials: 'same-origin',
+  })
 }
 
 function createApolloClient() {

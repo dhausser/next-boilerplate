@@ -2,13 +2,13 @@ import { Post, PrismaClient } from '@prisma/client'
 import { GetStaticProps } from 'next'
 // import { GetServerSideProps } from 'next'
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { initializeApollo } from '../apollo/client'
-import { POSTS_QUERY } from '@/components/posts'
+import { POSTS_QUERY, Posts } from '@/components/posts'
 
 import Link from 'next/link'
 import { Button } from '@/components/button'
-import { Posts } from '@/components/posts'
+
 import styles from 'styles/Home.module.css'
+import { initializeApollo } from '../apollo/client'
 
 interface Props {
   posts: Post[]
@@ -25,7 +25,7 @@ function HomePage({ posts }: Props) {
           {posts.map((post) => (
             <div className={styles.card} key={post.id}>
               <Link href="/post/[pid]" as={`/post/${post.id}`}>
-                <a>{post.title}</a>
+                <a href="/post/[pid]">{post.title}</a>
               </Link>
             </div>
           ))}
